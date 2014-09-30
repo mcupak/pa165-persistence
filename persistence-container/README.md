@@ -24,20 +24,21 @@ Check the correctnes with tests:
 
 **Task 05** Embedded mapping. Create Embeddable class Address and map it using annotation @Embedded as a part of the PetStore (its commented out in the PetStore entity right now). Uncomment code that is commented out in test  embeddedAddressTest  and then run the test
 
-**Task 06** Embedded element collection mapping. Add a collection "Set<Address> previousAddresses" to the PetStore. Do not map this as one to many but instead use ElementCollection and reuse the Address that you created in **Task 05**
+**Task 06** Embedded element collection mapping. Add a collection "Set&lt;Address&gt; previousAddresses" to the PetStore. Do not map this as one to many but instead use ElementCollection and reuse the Address that you created in **Task 05**
 Also set fetch type to "fetch=FetchType.EAGER" so that the previous addresses are always fetched together with a PetStore
 Again uncomment the code in embeddedOldAddressesTest and run the test
 
-**Task 07** Map the following fields: dateOfOpening, openTime,closeTime. The first one should store only date (e.g. 24-9-2014) and the former ones should store only the time information (e.g. 13:30:44) 
+**Task 07** Map the following fields: dateOfOpening, openTime,closeTime. The dateOfOpening should be only date (e.g. 24-9-2014) without time information. The openTime and closeTime should be stored only as time information (e.g. 13:30:44) 
 Run tests dateOfOpeningHasNoTime, openTimeAndCloseTimeHasNoDate
 
-**Task 08**  This task requires you to work with LoadStateTest.java.  There is a comment in the eagerFetchTest that requires you to add a new assert. Firstly enable the test (@Test(enabled=true))and then add the assert.
+**Task 08**  Before running this task, issue "mvn clean install -DskipTests", we had a few issues with this one. This task requires you to work with LoadStateTest.java.  There is a comment in the eagerFetchTest that requires you to add a new assert. Firstly enable the test (@Test(enabled=true))and then add the assert.
 
 Run the test, you should get a assert Exception
 
 ```
 java.lang.AssertionError: expected [LOADED] but found [NOT_LOADED] 
 ```
+
 
 **Task 09** Now you know that the cages collection is not loaded. To pass the assert you created you need to change the fetch type for the cages association to EAGER, do it and rerun the test.
 It will still fail because the test traverses all the pets in the cages. Fix this by adding eager fecth also on that association.
